@@ -31,10 +31,8 @@ async def test_creation(
         cabin=testname,
         embarked=testname,
     )
-    # assert response.status_code == status.HTTP_200_OK
     dao = TitanicDAO(dbsession)
     instances = await dao.filter(pname=testname)
-    print(instances)
     assert instances[0].Pname == testname
 
     url = fastapi_app.url_path_for("get_titanic_models")
@@ -51,20 +49,19 @@ async def test_getting(
     client: AsyncClient,
     dbsession: AsyncSession,
 ) -> None:
-    """Tests titanic instance retrieval after loading all the passengers,
-    filter the first 100 embarked=Q passengers.
-    Expect 77
-    """
-
+    """Tests titanic instance retrieval after
+    loading all the passengers, filter the first 100 embarked=Q passengers.
+    Expect 77"""
     url = fastapi_app.url_path_for("load_titanic_models")
-    test_name = uuid.uuid4().hex
     response = await client.put(
         url,
         json={},
     )
     response = await client.get(url)
-    put = response.json()
+    # PUT request to load titanic.csv:
+    response.json()
 
+    # GET request:
     url2 = (
         fastapi_app.url_path_for("get_titanic_models")
         + "?embarked=Q&limit=100&offset=0"

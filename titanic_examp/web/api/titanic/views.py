@@ -10,7 +10,7 @@ router = APIRouter()
 
 
 @router.get("/", response_model=List[TitanicModelDTO])
-async def get_titanic_models(
+async def get_titanic_models(  # noqa: WPS211
     pname: Optional[str] = None,
     survived: Optional[int] = None,
     pclass: Optional[int] = None,
@@ -86,7 +86,6 @@ async def get_all_titanic_models(
 
 @router.put("/")
 async def load_titanic_models(
-    # new_titanic_object: TitanicModelInputDTO,
     titanic_dao: TitanicDAO = Depends(),
 ) -> None:
     """

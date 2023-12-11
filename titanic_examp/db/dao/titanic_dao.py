@@ -1,4 +1,3 @@
-import os
 from typing import List, Optional
 
 import pandas as pd
@@ -16,7 +15,7 @@ class TitanicDAO:
     def __init__(self, session: AsyncSession = Depends(get_db_session)):
         self.session = session
 
-    async def create_titanic_model_single(
+    async def create_titanic_model_single(  # noqa: WPS211
         self,
         pname: str,
         survived: int,
@@ -31,8 +30,18 @@ class TitanicDAO:
         embarked: str,
     ) -> None:
         """
-        Add single titanic model to session.
-
+                Add single titanic model to session.
+        :param age: filter parameter
+        :param cabin: filter parameter
+        :param embarked: filter parameter
+        :param fare: filter parameter
+        :param parch: filter parameter
+        :param pclass: filter parameter
+        :param pname: filter parameter
+        :param sex: filter parameter
+        :param sibsp: filter parameter
+        :param survived: filter parameter
+        :param ticket: filter parameter
         """
         self.session.add(
             TitanicModel(
@@ -52,16 +61,13 @@ class TitanicDAO:
 
     async def load_titanic_models(self) -> None:
         """
-        add the whole list of titanic models
-        """
-        cwd = os.getcwd()
-        print(cwd)
+        Add the whole list of titanic models."""
         csv_file = "titanic_examp/static/titanic.csv"
         # Load data from CSV into a Pandas DataFrame
         df = pd.read_csv(csv_file)
 
         # Insert data into the TitanicModel table
-        for index, row in df.iterrows():
+        for _index, row in df.iterrows():
             titanic_entry = TitanicModel(
                 PassengerId=row["PassengerId"],
                 Survived=row["Survived"],
@@ -92,7 +98,7 @@ class TitanicDAO:
 
         return list(raw_titanic.scalars().fetchall())
 
-    async def filter(
+    async def filter(  # noqa: WPS211 # noqa: C901
         self,
         pname: Optional[str] = None,
         survived: Optional[int] = None,
@@ -122,6 +128,8 @@ class TitanicDAO:
         :param fare: fare of titanic instance.
         :param cabin: cabin of titanic instance.
         :param embarked: embarked location of titanic instance.
+        :param limit: limit for return
+        "param offset: number to skip
         :return: titanic models.
         """
         query = select(TitanicModel)

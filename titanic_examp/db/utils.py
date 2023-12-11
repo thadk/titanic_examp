@@ -2,8 +2,6 @@ import os
 
 from titanic_examp.settings import settings
 
-# from sqlalchemy.orm import sessionmaker
-
 
 async def create_database() -> None:
     """Create a database."""
