@@ -60,8 +60,7 @@ async def get_titanic_models(  # noqa: WPS211
         limit=limit,
         offset=offset,
     )
-    titanic_dtos = [TitanicModelDTO.from_orm(passenger) for passenger in passengers]
-    return titanic_dtos
+    return [TitanicModelDTO.from_orm(passenger) for passenger in passengers]
 
 
 @router.get("/all", response_model=List[TitanicModelDTO])
@@ -79,9 +78,7 @@ async def get_all_titanic_models(
     :return: list of titanic objects from database.
     """
     passengers = await titanic_dao.get_all_passengers(limit=limit, offset=offset)
-    titanic_dtos = [TitanicModelDTO.from_orm(passenger) for passenger in passengers]
-    # titanic_dto = TitanicModelDTO.from_orm(passengers)
-    return titanic_dtos
+    return [TitanicModelDTO.from_orm(passenger) for passenger in passengers]
 
 
 @router.put("/")
@@ -91,7 +88,6 @@ async def load_titanic_models(
     """
     Creates titanic model in the database using titanic.csv.
 
-    :param new_titanic_object: new titanic model item.
     :param titanic_dao: DAO for titanic models.
     """
     await titanic_dao.load_titanic_models()

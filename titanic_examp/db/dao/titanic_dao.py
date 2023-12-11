@@ -29,8 +29,8 @@ class TitanicDAO:
         cabin: str,
         embarked: str,
     ) -> None:
-        """
-                Add single titanic model to session.
+        """Add single titanic model to session.
+
         :param age: filter parameter
         :param cabin: filter parameter
         :param embarked: filter parameter
@@ -60,8 +60,7 @@ class TitanicDAO:
         )
 
     async def load_titanic_models(self) -> None:
-        """
-        Add the whole list of titanic models."""
+        """Add the whole list of titanic models."""
         csv_file = "titanic_examp/static/titanic.csv"
         # Load data from CSV into a Pandas DataFrame
         df = pd.read_csv(csv_file)
@@ -98,7 +97,7 @@ class TitanicDAO:
 
         return list(raw_titanic.scalars().fetchall())
 
-    async def filter(  # noqa: WPS211 # noqa: C901
+    async def filter(  # noqa: WPS211 C901
         self,
         pname: Optional[str] = None,
         survived: Optional[int] = None,
@@ -128,8 +127,8 @@ class TitanicDAO:
         :param fare: fare of titanic instance.
         :param cabin: cabin of titanic instance.
         :param embarked: embarked location of titanic instance.
-        :param limit: limit for return
-        "param offset: number to skip
+        :param limit: limit for return.
+        :param offset: number to skip.
         :return: titanic models.
         """
         query = select(TitanicModel)
