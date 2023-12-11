@@ -52,7 +52,8 @@ async def test_getting(
     """Tests titanic instance retrieval.
 
     After loading all the passengers, filter the first 100 embarked=Q passengers.
-    Expect 77"""
+    Expect 77
+    """
     url = fastapi_app.url_path_for("load_titanic_models")
     response = await client.put(
         url,
