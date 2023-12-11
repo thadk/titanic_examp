@@ -7,7 +7,7 @@ from titanic_examp.db.base import Base
 
 
 class TitanicModel(Base):
-    """TitanicModel for the database"""
+    """TitanicModel for the database."""
 
     __tablename__ = "titanic"
     PassengerId: Mapped[int] = mapped_column(Integer, primary_key=True)
