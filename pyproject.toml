@@ -1,10 +1,8 @@
 [tool.poetry]
 name = "titanic_examp"
 version = "0.1.0"
-description = ""
-authors = [
-
-]
+description = "SQLAlchemy-based endpoint for titanic.csv file"
+authors = ["T K <thadk@users.noreply.github.com>"]
 maintainers = [
 
 ]
