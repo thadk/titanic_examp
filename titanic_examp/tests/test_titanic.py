@@ -56,7 +56,7 @@ async def test_getting(
     Expect 77
     """
 
-    url = fastapi_app.url_path_for("create_titanic_model")
+    url = fastapi_app.url_path_for("load_titanic_models")
     test_name = uuid.uuid4().hex
     response = await client.put(
         url,

@@ -24,9 +24,9 @@ You can read more about poetry here: https://python-poetry.org/
 
 ```bash
 $ tree "titanic_examp"
+notebooks # contains the solved ubo.ipynb file for the second challenge.
 titanic_examp
 ├── conftest.py  # Fixtures for all tests.
-├── notebooks # contains the solved ubo.ipynb file for the second challenge.
 ├── db  # module contains db configurations
 │   ├── dao  # Data Access Objects. Contains different classes to interact with database.
 │   ├── migrations # Alembic migrations
@@ -86,9 +86,9 @@ http://localhost:8000/docs
 For running tests on your local machine:
 
 
-2. Run the pytest.
+1. Run the pytest.
 ```bash
-pytest -vv .
+poetry run pytest -vv .
 ```
 
 <details>
